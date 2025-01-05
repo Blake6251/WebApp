@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from .routers import users, items
+from .internal import admin
 
 app = FastAPI()
 
@@ -12,6 +14,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# 라우터 포함
+app.include_router(users.router)
+app.include_router(items.router)
+app.include_router(
+    admin.router,
+    prefix="/admin",
+    tags=["admin"]
+)
+
 @app.get("/")
 async def root():
-    return {"message": "FastAPI 서버가 실행중입니다"}
+    return {"message": "Welcome to FastAPI"}

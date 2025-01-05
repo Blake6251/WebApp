@@ -1,4 +1,14 @@
-venv/
-backend/db.sqlite3
+# Python
 __pycache__/
+*.pyc
+venv/
+.env
+
+# Node
 node_modules/
+dist/
+.env.local
+
+# IDE
+.vscode/
+.idea/
